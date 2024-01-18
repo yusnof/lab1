@@ -4,15 +4,14 @@ public class Saab95 extends Car{
 
     public boolean turboOn;
 
-    protected Saab95(){
+    public Saab95(){
+        nrDoors = 2;
         modelName = "Saab95";
         turboOn=false;
-    }
-    public Saab95(Color color, double currentSpeed,double enginePower) {
-        super(color,currentSpeed,enginePower);
-        new Saab95();
-    }
+        enginePower = 100; // not sure
+        stopEngine();
 
+    }
     public void setTurboOn(){
         turboOn = true;
     }

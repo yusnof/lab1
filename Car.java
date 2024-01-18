@@ -1,23 +1,13 @@
 import java.awt.*;
-
-public class Car {
+import java.lang.Math;
+public class Car implements Movable{
 
     protected int nrDoors;
     protected Color color;
-    protected double enginePower;
-    protected double currentSpeed;
+    protected double enginePower,currentSpeed,x,y,direction;
     protected String modelName;
+    protected Car(){
 
-    public Car(){
-
-    }
-
-    public Car(Color color, double currentSpeed, double enginePower){
-        this.color=color;
-        this.currentSpeed=currentSpeed;
-        this.enginePower=enginePower;
-        this.modelName=modelName;
-        startEngine();
     }
     public int getNrDoors(){
         return nrDoors;
@@ -48,5 +38,58 @@ public class Car {
 
     public void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+    }
+
+    @Override
+    public void move() {
+        // TODO  a is correct in 1st and 3rd quadrant but not others.
+        double a=direction-(direction%90);
+        if(currentSpeed<0){
+            double hypotenuse= Math.abs(currentSpeed);
+            double newY= currentSpeed*Math.sin(a);
+            if(Math.sin(direction)<0) {
+                y=y+newY;
+            }
+            else {
+                y=y-newY;
+            }
+            double newX=currentSpeed*Math.cos(a);
+            if(Math.cos(direction)<0) {
+                x=x+newX;
+            }
+            else{
+                x=x-newX;
+            }
+        }
+        else{
+            double newY= currentSpeed*Math.sin(a);
+            if(Math.sin(direction)<0) {
+                y=y-newY;
+            }
+            else {
+                y=y+newY;
+            }
+            double newX=currentSpeed*Math.cos(a);
+            if(Math.cos(direction)<0) {
+                x=x-newX;
+            }
+            else{
+                x=x+newX;
+            }
+        }
+    }
+
+    @Override
+    public void turnLeft() {
+        direction=(direction+15)%360;
+
+    }
+
+    @Override
+    public void turnRight() {
+        if(direction-15<0) {
+            direction=360-(direction-15);
+        }
+        else {direction=direction-15;}
     }
 }
