@@ -30,7 +30,7 @@ public class Car implements Movable{
 
     public double speedFactor() {
         return enginePower * 0.01;
-    }
+    }//do we really need this method in Cars? because we overriding it twice
 
     public void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
