@@ -6,8 +6,8 @@ public class Car implements Movable{
     protected Color color;
     protected double enginePower,currentSpeed,x,y,direction;
     protected String modelName;
-    protected Car(){
-
+    public Car(){
+        throw new IllegalArgumentException("No values");
     }
     public int getNrDoors(){
         return nrDoors;
@@ -23,18 +23,21 @@ public class Car implements Movable{
     public void startEngine(){
         currentSpeed = 0.1;
     }
+    public double speedFactor() {
+        return enginePower * 0.01;
+    }
 
     public void stopEngine(){
         currentSpeed = 0;
     }
 
-    public double speedFactor() {
-        return enginePower * 0.01;
-    }//do we really need this method in Cars? because we overriding it twice
+
+
 
     public void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
     }
+
 
     public void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
