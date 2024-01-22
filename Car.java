@@ -1,14 +1,12 @@
 import java.awt.*;
 import java.lang.Math;
-public class Car implements Movable{
+  public abstract class Car implements Movable{
 
     protected int nrDoors;
     protected Color color;
     protected double enginePower,currentSpeed,x,y,direction;
     protected String modelName;
-    public Car(){
-        throw new IllegalArgumentException("No values");
-    }
+
     public int getNrDoors(){
         return nrDoors;
     }
@@ -32,13 +30,17 @@ public class Car implements Movable{
     }
 
 
-
-
     public void incrementSpeed(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+        double temp = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+        if (temp >=0 && temp <= this.enginePower ) {
+            currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
+        }
+        else
+        {
+            throw new IllegalArgumentException("CurrentSpeed should be in the interval 0 to EnginePower");
+        }
+
     }
-
-
     public void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
@@ -95,4 +97,23 @@ public class Car implements Movable{
         }
         else {direction=direction-15;}
     }
+
+    public void gas(double amount){
+        if (amount >= 0 && amount <=1){
+            incrementSpeed(amount);
+        }
+        else {
+            throw new IllegalArgumentException("Value should be between 0 and 1");
+        }
+    }
+
+    public void brake(double amount){
+        if (amount >= 0 && amount <=1){
+            decrementSpeed(amount);
+        }
+        else {
+            throw new IllegalArgumentException("Value should be between 0 and 1");
+        }
+    }
+
 }

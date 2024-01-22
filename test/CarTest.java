@@ -7,6 +7,9 @@ public class CarTest extends TestCase {
 
     Car volvo = new Volvo240();
     Car saab = new Saab95();
+
+
+    double amount;
     public void testGetNrDoors() {
         assertEquals(4,volvo.getNrDoors());
         assertEquals(2,saab.getNrDoors());
@@ -50,6 +53,8 @@ public class CarTest extends TestCase {
     }
 
     public void testSpeedFactor() {
+        assertEquals(1.25*0.01*120,volvo.speedFactor());
+        assertEquals(1*0.01*100,saab.speedFactor());
 
     }
 
@@ -58,9 +63,19 @@ public class CarTest extends TestCase {
     }
 
     public void testDecrementSpeed() {
+        amount = 0.0;
+        volvo.stopEngine();
+        saab.stopEngine();
+
+        assertEquals(Math.max(volvo.getCurrentSpeed() - volvo.speedFactor() * amount,0),0);
+        assertEquals(Math.max(saab.getCurrentSpeed() - saab.speedFactor() * amount,0),0);
     }
 
     public void testMove() {
+        volvo.stopEngine();
+        saab.stopEngine();
+
+
     }
 
     public void testTurnLeft() {
