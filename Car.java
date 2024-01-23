@@ -59,7 +59,7 @@ import java.lang.Math;
         double absCurrentSpeed = Math.abs(currentSpeed);
         double yComponent = absCurrentSpeed*Math.sin(a);
         double xComponent = absCurrentSpeed*Math.cos(a);
-        if(Math.sin(direction)<0) {
+        if(Math.sin(Math.toRadians(direction))<0) {
            yComponent=yComponent/-1;
         }
         if(Math.cos(Math.toRadians(direction))<0) {

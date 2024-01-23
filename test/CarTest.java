@@ -110,9 +110,16 @@ public class CarTest extends TestCase {
     }
 
     public void testTurnLeft() {
+        volvo.direction= 90;
+        volvo.turnLeft();
+        assertEquals(105.0,volvo.direction);
+
     }
 
     public void testTurnRight() {
+        volvo.direction=90;
+        volvo.turnRight();
+        assertEquals(75.0,volvo.direction);
     }
     public void testGas(){
         //test in case of gas is more than 1
