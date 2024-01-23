@@ -44,50 +44,45 @@ import java.lang.Math;
     public void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
-
+    // used in move() to find the angle of the right triangle
+    public double findAngleA (double a) {
+        double t = a / 90;
+        if (t < 1) {
+            return a;
+        } else if (t > 1 && t < 2) {
+            return 180 - a;
+        } else if (t >= 2 && t < 3) {
+            return a - 180;
+        } else {
+            return 360 - a;
+        }
+    }
     @Override
     public void move() {
-        // TODO  a is correct in 1st and 3rd quadrant but not others.
-        double a=direction-(direction%90);
-        if(currentSpeed<0){
-            double hypotenuse= Math.abs(currentSpeed);
-            double newY= currentSpeed*Math.sin(a);
-            if(Math.sin(direction)<0) {
-                y=y+newY;
-            }
-            else {
-                y=y-newY;
-            }
-            double newX=currentSpeed*Math.cos(a);
-            if(Math.cos(direction)<0) {
-                x=x+newX;
-            }
-            else{
-                x=x-newX;
-            }
+        double a = findAngleA(direction);
+        double absCurrentSpeed = Math.abs(currentSpeed);
+        double yComponent = absCurrentSpeed*Math.sin(a);
+        double xComponent = absCurrentSpeed*Math.cos(a);
+        if(Math.sin(direction)<0) {
+           yComponent=yComponent/-1;
         }
-        else{
-            double newY= currentSpeed*Math.sin(a);
-            if(Math.sin(direction)<0) {
-                y=y-newY;
-            }
-            else {
-                y=y+newY;
-            }
-            double newX=currentSpeed*Math.cos(a);
-            if(Math.cos(direction)<0) {
-                x=x-newX;
-            }
-            else{
-                x=x+newX;
-            }
+        if(Math.cos(direction)<0) {
+            xComponent=xComponent/-1;
+        }
+        // negate the components to move opposite to the facing direction if speed <0
+        if(currentSpeed<0) {
+            x=x+(xComponent/-1);
+            y=y+(yComponent/-1);
+         }
+        else {
+            x=x+xComponent;
+            y=y+yComponent;
         }
     }
 
     @Override
     public void turnLeft() {
         direction=(direction+15)%360;
-
     }
 
     @Override
