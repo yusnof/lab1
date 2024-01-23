@@ -59,7 +59,11 @@ public class CarTest extends TestCase {
     }
 
     public void testIncrementSpeed() {
-
+         amount = 0.0;
+         volvo.stopEngine();
+         saab.stopEngine();
+         assertEquals(Math.min(volvo.getCurrentSpeed() + volvo.speedFactor() * amount,volvo.enginePower),0.0);
+         assertEquals(Math.min(saab.getCurrentSpeed() + saab.speedFactor() * amount,saab.enginePower),0.0);
     }
 
     public void testDecrementSpeed() {

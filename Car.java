@@ -12,8 +12,8 @@ import java.lang.Math;
     }
     public double getEnginePower() { return enginePower; }
 
-    public double getCurrentSpeed(){return currentSpeed;}
-    public Color getColor(){return color;}
+    public double getCurrentSpeed(){ return currentSpeed; }
+    public Color getColor(){ return color; }
 
     public void setColor(Color color){
         this.color = color;
