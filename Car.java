@@ -62,7 +62,7 @@ import java.lang.Math;
         if(Math.sin(direction)<0) {
            yComponent=yComponent/-1;
         }
-        if(Math.cos(direction)<0) {
+        if(Math.cos(Math.toRadians(direction))<0) {
             xComponent=xComponent/-1;
         }
         // negate the components to move opposite to the facing direction if speed <0

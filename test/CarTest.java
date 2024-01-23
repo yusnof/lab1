@@ -16,11 +16,12 @@ public class CarTest extends TestCase {
     }
 
     public void testGetEnginePower() {
-        assertEquals(120.0,volvo.getEnginePower());
+        assertEquals(120.0, volvo.getEnginePower());
         assertEquals(100.0, saab.getEnginePower());
     }
 
     public void testGetCurrentSpeed() {
+        volvo.stopEngine();
         assertEquals(0.0,volvo.getCurrentSpeed());
         assertEquals(0.0,volvo.getCurrentSpeed());
     }
@@ -67,18 +68,44 @@ public class CarTest extends TestCase {
     }
 
     public void testDecrementSpeed() {
-        amount = 0.0;
+        double testAmount = 10.0;
+        //Current speed 10.0, lower by 5. Expected test result 5.0
         volvo.stopEngine();
-        saab.stopEngine();
+        volvo.incrementSpeed(testAmount);
+        volvo.decrementSpeed(5);
+        assertEquals(7.5, volvo.getCurrentSpeed());
+    }
 
-        assertEquals(Math.max(volvo.getCurrentSpeed() - volvo.speedFactor() * amount,0),0);
-        assertEquals(Math.max(saab.getCurrentSpeed() - saab.speedFactor() * amount,0),0);
+    public void testFindAngleA() {
+        assertEquals(60.0,volvo.findAngleA(60)); //
+        assertEquals(30.0,volvo.findAngleA(150)); //
+        assertEquals(50.0,volvo.findAngleA(230)); //
+        assertEquals(40.0,volvo.findAngleA(320)); //
     }
 
     public void testMove() {
-        volvo.stopEngine();
-        saab.stopEngine();
+        //Car is not moving, expected return 0,0
 
+        volvo.stopEngine();
+        volvo.x = 0.0;
+        volvo.y = 0.0;
+        volvo.direction = 10.0;
+        volvo.move();
+
+        assertEquals(0.0,volvo.x);
+        assertEquals(0.0, volvo.y);
+
+        //Car moving at speed 10, direction 10
+        volvo.x = 0.0;
+        volvo.y = 0.0;
+
+        volvo.stopEngine();
+        volvo.incrementSpeed(10);
+        volvo.direction = 10.0;
+        volvo.move();
+
+        assertEquals(volvo.y, (Math.sin(Math.toRadians(volvo.findAngleA(volvo.direction)))*volvo.getCurrentSpeed()));
+        assertEquals(volvo.x, (Math.cos(Math.toRadians(volvo.findAngleA(volvo.direction)))*volvo.getCurrentSpeed()));
 
     }
 
