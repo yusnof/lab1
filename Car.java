@@ -35,11 +35,6 @@ import java.lang.Math;
         if (temp >=0 && temp <= this.enginePower ) {
             currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
         }
-        else
-        {
-            throw new IllegalArgumentException("CurrentSpeed should be in the interval 0 to EnginePower");
-        }
-
     }
     public void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
@@ -59,7 +54,8 @@ import java.lang.Math;
     }
     @Override
     public void move() {
-        double a = findAngleA(direction);
+        //inDegrees = inRadians * 180 / PI;
+        double a = Math.toRadians(findAngleA(direction));
         double absCurrentSpeed = Math.abs(currentSpeed);
         double yComponent = absCurrentSpeed*Math.sin(a);
         double xComponent = absCurrentSpeed*Math.cos(a);
@@ -97,17 +93,11 @@ import java.lang.Math;
         if (amount >= 0 && amount <=1){
             incrementSpeed(amount);
         }
-        else {
-            throw new IllegalArgumentException("Value should be between 0 and 1");
-        }
     }
 
     public void brake(double amount){
         if (amount >= 0 && amount <=1){
             decrementSpeed(amount);
-        }
-        else {
-            throw new IllegalArgumentException("Value should be between 0 and 1");
         }
     }
 

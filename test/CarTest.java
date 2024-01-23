@@ -62,8 +62,8 @@ public class CarTest extends TestCase {
          amount = 0.0;
          volvo.stopEngine();
          saab.stopEngine();
-         assertEquals(Math.min(volvo.getCurrentSpeed() + volvo.speedFactor() * amount,volvo.enginePower),0.0);
-         assertEquals(Math.min(saab.getCurrentSpeed() + saab.speedFactor() * amount,saab.enginePower),0.0);
+         assertEquals(0.0,Math.min(volvo.getCurrentSpeed() + volvo.speedFactor() * amount,volvo.enginePower));
+         assertEquals(0.0,Math.min(saab.getCurrentSpeed() + saab.speedFactor() * amount,saab.enginePower));
     }
 
     public void testDecrementSpeed() {
@@ -86,5 +86,23 @@ public class CarTest extends TestCase {
     }
 
     public void testTurnRight() {
+    }
+    public void testGas(){
+        //test in case of gas is more than 1
+        volvo.currentSpeed = 100;
+        volvo.gas(2);
+        assertEquals(volvo.currentSpeed, 100.0);
+
+        //test case were the speed should increase
+        volvo.currentSpeed = 100;
+        volvo.gas(1);
+        assertEquals(volvo.currentSpeed, 101.5);
+
+    }
+    public void testBrake(){
+       volvo.currentSpeed=100.0;
+       double d = volvo.currentSpeed;
+       volvo.brake(0.4);
+       assertTrue(volvo.currentSpeed < d);
     }
 }
