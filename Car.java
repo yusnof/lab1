@@ -6,7 +6,7 @@ import java.lang.Math;
     protected Color color;
     protected double enginePower,currentSpeed,x,y,direction;
     protected String modelName;
-
+    protected int weight;
     public int getNrDoors(){
         return nrDoors;
     }
@@ -24,11 +24,23 @@ import java.lang.Math;
     public double speedFactor() {
         return enginePower * 0.01;
     }
-
     public void stopEngine(){
         currentSpeed = 0;
     }
-
+    public int getWeight() {
+        return weight;
+    }
+    public double getY() {
+        return y;
+    }
+    public double getX() {
+        return x;
+     }
+     public double measureDistance(Car a, Car b) {
+        double xDiff=  a.getX() - b.getX();
+        double yDiff=  a.getY() - b.getY();
+        return Math.sqrt(Math.pow(xDiff,2)+Math.pow(yDiff,2));
+      }
 
     public void incrementSpeed(double amount){
         double temp = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
