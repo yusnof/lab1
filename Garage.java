@@ -8,6 +8,7 @@ public class Garage {
     private int capacity;
 
     private String name;
+
     private List<Car> carInventory = new ArrayList<>(capacity);
     private List<Car> acceptedModels;
     public Garage(int capacity,List<Car> acceptedModels){
@@ -16,7 +17,8 @@ public class Garage {
         this.capacity = capacity;
     }
     public void addCar(Car car){
-        
+        // TODO create error
+
     }
     public void pimpAllCars (){
         for(Car car: carInventory) {
