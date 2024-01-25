@@ -39,7 +39,10 @@ import java.lang.Math;
     public void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
-    // used in move() to find the angle of the right triangle
+
+    // findAngleA used in move() to find the angle of the right triangle in unit circle,
+    // a should be the angle between the x-axle and the facing direction.
+    // to ensure opposite leg of triangle is the y component, and adjacent is the x component.
     public double findAngleA (double a) {
         double t = a / 90;
         if (t < 1) {
@@ -54,14 +57,15 @@ import java.lang.Math;
     }
     @Override
     public void move() {
-        //inDegrees = inRadians * 180 / PI;
         double a = Math.toRadians(findAngleA(direction));
         double absCurrentSpeed = Math.abs(currentSpeed);
         double yComponent = absCurrentSpeed*Math.sin(a);
         double xComponent = absCurrentSpeed*Math.cos(a);
+        // if facing direction is in the negative y direction, y cord should be reduced.
         if(Math.sin(Math.toRadians(direction))<0) {
            yComponent=yComponent/-1;
         }
+        // if facing direction is in the negative x direction, x cord should be reduced.
         if(Math.cos(Math.toRadians(direction))<0) {
             xComponent=xComponent/-1;
         }
@@ -70,6 +74,7 @@ import java.lang.Math;
             x=x+(xComponent/-1);
             y=y+(yComponent/-1);
          }
+        // speed is >= 0 ,new x,y positions
         else {
             x=x+xComponent;
             y=y+yComponent;

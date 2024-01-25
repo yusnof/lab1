@@ -8,8 +8,8 @@ public class CarTest extends TestCase {
     Car volvo = new Volvo240();
     Car saab = new Saab95();
 
-
     double amount;
+
     public void testGetNrDoors() {
         assertEquals(4,volvo.getNrDoors());
         assertEquals(2,saab.getNrDoors());
@@ -125,12 +125,12 @@ public class CarTest extends TestCase {
         //test in case of gas is more than 1
         volvo.currentSpeed = 100;
         volvo.gas(2);
-        assertEquals(volvo.currentSpeed, 100.0);
+        assertEquals(100.0, volvo.currentSpeed);
 
         //test case were the speed should increase
         volvo.currentSpeed = 100;
         volvo.gas(1);
-        assertEquals(volvo.currentSpeed, 101.5);
+        assertEquals(101.5, volvo.currentSpeed);
 
     }
     public void testBrake(){
