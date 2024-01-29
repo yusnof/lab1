@@ -2,11 +2,11 @@ import java.awt.*;
 import java.lang.Math;
   public abstract class Car implements Movable{
 
-    protected int nrDoors;
+    protected int nrDoors,weight;
     protected Color color;
     protected double enginePower,currentSpeed,x,y,direction;
     protected String modelName;
-    protected int weight;
+
     public int getNrDoors(){
         return nrDoors;
     }

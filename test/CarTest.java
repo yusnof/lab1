@@ -139,4 +139,105 @@ public class CarTest extends TestCase {
        volvo.brake(0.4);
        assertTrue(volvo.currentSpeed < d);
     }
+    public void testScaniaRaiseTruckBed(){
+      Scania  scania= new Scania();
+      scania.truckBedAngle=0;
+      scania.lowerTruckBed();
+      assertTrue(scania.truckBedAngle==0);
+
+    }
+    public void testScaniaLowerTruckBed(){
+        Scania scania = new Scania();
+        scania.truckBedAngle = 20;
+        scania.lowerTruckBed();
+        assertEquals(10, scania.truckBedAngle);
+
+    }
+    public void testCarTransportRaiseTruckBed(){
+        CarTransport carTransport= new CarTransport();
+        // not needed bc we declare tha value in the contractor
+        carTransport.isTruckBedDown = true;
+        carTransport.raiseTruckBed();
+        assertTrue(carTransport.isTruckBedDown);
+
+    }
+    public void testCarTransportLowerTruckBed(){
+        CarTransport carTransport= new CarTransport();
+        carTransport.isTruckBedDown=false;
+        carTransport.lowerTruckBed();
+        assertTrue(carTransport.isTruckBedDown);
+
+    }
+    public void testCarTransportCalculateLoad(){
+        CarTransport carTransport = new CarTransport();
+        assertEquals(0,carTransport.calculateLoad());
+    }
+
+    public void testCarTransportAddCar(){
+        CarTransport carTransport= new CarTransport();
+        carTransport.addCar(volvo);
+        carTransport.addCar(saab);
+        carTransport.addCar(volvo);
+        carTransport.addCar(volvo);
+        assertEquals(4,carTransport.calculateLoad());
+    }
+    public void testCarIsToFarCarTransportAddCar(){
+        CarTransport carTransport = new CarTransport();
+        Volvo240 tmp = new Volvo240();
+        tmp.x=100;
+        tmp.y=100;
+        carTransport.x=0;
+        carTransport.y=0;
+        carTransport.addCar(tmp);
+        assertEquals(0,carTransport.calculateLoad());
+    }
+    public void testIsCapacityNotFull(){
+        CarTransport CT = new CarTransport();
+        CT.addCar(volvo);
+        assertTrue(CT.isCapacityNotFull(volvo));
+    }
+    public void testCarTransportRemoveCar(){
+        CarTransport carTransport = new CarTransport();
+        carTransport.addCar(volvo);
+        carTransport.removeCar();
+        assertEquals(0,carTransport.calculateLoad());
+
+    }
+    public void testTransportAndCarsSameCords(){
+        CarTransport carTransport = new CarTransport();
+        Volvo240 tmp = new Volvo240();
+        tmp.x=2;
+        tmp.y=2;
+        carTransport.x=0;
+        carTransport.y=0;
+        carTransport.addCar(tmp);
+        carTransport.currentSpeed=10;
+        carTransport.move();
+        assertEquals(tmp.x,carTransport.x);
+        assertEquals(tmp.y,carTransport.y);
+    }
+    public void testGarageAddCar(){
+        Garage<Volvo240> garage = new Garage<>(10);
+        Volvo240 volvo = new Volvo240();
+        garage.addCar(volvo);
+        assertEquals(1,garage.getCarInventory().size());
+    }
+    public void testPimpAllCars(){
+        Garage<Car> gaga = new Garage<>(3);
+        Volvo240 vovo = new Volvo240();
+        Saab95 sasa = new Saab95();
+        Scania scasca = new Scania();
+        gaga.addCar(vovo);
+        gaga.addCar(sasa);
+        gaga.addCar(scasca);
+        gaga.pimpAllCars();
+        for(Car car:gaga.getCarInventory()){
+            assertEquals(car.modelName+"BromBrom",car.modelName);
+            assertEquals(Color.MAGENTA,car.color);
+            assertTrue(car.enginePower > 1000);
+        }
+    }
+
+
+
 }

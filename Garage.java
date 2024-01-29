@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Garage {
+public class Garage<T extends Car> {
 
     private int capacity;
 
@@ -16,10 +16,14 @@ public class Garage {
         this.acceptedModels = acceptedModels;
         this.capacity = capacity;
     }
-    public void addCar(Car car){
-        // TODO create error
-
+    public List<T> getCarInventory(){
+        return carInventory;
     }
+
+    public void addCar(T car){
+        this.carInventory.add(car);
+    }
+
     public void pimpAllCars (){
         for(Car car: carInventory) {
             car.modelName += "BromBrom";
@@ -27,8 +31,10 @@ public class Garage {
             car.enginePower += 1000;
         }
     }
-    public void removeCar(){
-        //TODO type "statiskt" check
+    public void removeCar(T car){
+        if (!carInventory.isEmpty()) {
+            this.carInventory.remove(car);
+        }
     }
 
 }

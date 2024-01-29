@@ -15,7 +15,7 @@ public class Scania extends Truck {
     }
     @Override
     public void raiseTruckBed(){
-        //TODO JUint testing
+
         if(truckBedAngle <= 60 && truckBedAngle >= 0 && currentSpeed == 0) {
             truckBedAngle += 10;
             isTruckBedDown = false;
@@ -23,7 +23,7 @@ public class Scania extends Truck {
     }
     @Override
     public void lowerTruckBed() {
-        //TODO JUnit testing
+
         if (truckBedAngle <= 70 && truckBedAngle >= 10 && currentSpeed == 0) {
             truckBedAngle -= 10;
         }
