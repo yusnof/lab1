@@ -1,17 +1,14 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Garage<T extends Car> {
 
     private int capacity;
+    private final String name;
+    private List<T> carInventory = new ArrayList<>(capacity);
 
-    private String name;
-
-    private List<Car> carInventory = new ArrayList<>(capacity);
-    private List<Car> acceptedModels;
-    public Garage(int capacity,List<Car> acceptedModels){
+    public Garage(int capacity){
         name = "Pimp my ride";
         this.acceptedModels = acceptedModels;
         this.capacity = capacity;
@@ -25,7 +22,7 @@ public class Garage<T extends Car> {
     }
 
     public void pimpAllCars (){
-        for(Car car: carInventory) {
+        for(T car: carInventory) {
             car.modelName += "BromBrom";
             car.setColor(Color.MAGENTA);
             car.enginePower += 1000;

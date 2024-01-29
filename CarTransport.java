@@ -1,15 +1,13 @@
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 public class CarTransport extends Truck{
     private List<Car> carInventory = new ArrayList<>(10);
     public CarTransport() {
         capacity = 37500;
         weight = 10000;
-        modelName = "Lorrey";
+        modelName = "Lorry";
         nrDoors = 2;
         enginePower = 1000;
         color = Color.YELLOW;
