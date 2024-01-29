@@ -83,7 +83,7 @@ public class CarTest extends TestCase {
         assertEquals(40.0,volvo.findAngleA(320)); //
     }
 
-    public void testMove() {
+    public void testMoveCarAtRest() {
         //Car is not moving, expected return 0,0
 
         volvo.stopEngine();
@@ -92,9 +92,10 @@ public class CarTest extends TestCase {
         volvo.direction = 10.0;
         volvo.move();
 
-        assertEquals(0.0,volvo.x);
+        assertEquals(0.0, volvo.x);
         assertEquals(0.0, volvo.y);
-
+    }
+    public void testMoveCarMoving() {
         //Car moving at speed 10, direction 10
         volvo.x = 0.0;
         volvo.y = 0.0;

@@ -10,7 +10,6 @@ public class Garage<T extends Car> {
 
     public Garage(int capacity){
         name = "Pimp my ride";
-        this.acceptedModels = acceptedModels;
         this.capacity = capacity;
     }
     public List<T> getCarInventory(){
@@ -33,5 +32,4 @@ public class Garage<T extends Car> {
             this.carInventory.remove(car);
         }
     }
-
 }
