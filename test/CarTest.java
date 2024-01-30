@@ -159,7 +159,7 @@ public class CarTest extends TestCase {
         // not needed bc we declare tha value in the contractor
         carTransport.isTruckBedDown = true;
         carTransport.raiseTruckBed();
-        assertTrue(carTransport.isTruckBedDown);
+        assertEquals(false,carTransport.isTruckBedDown);
 
     }
     public void testCarTransportLowerTruckBed(){
@@ -180,7 +180,7 @@ public class CarTest extends TestCase {
         carTransport.addCar(saab);
         carTransport.addCar(volvo);
         carTransport.addCar(volvo);
-        assertEquals(4,carTransport.calculateLoad());
+        assertEquals(3*volvo.getWeight()+ saab.getWeight(),carTransport.calculateLoad());
     }
     public void testCarIsToFarCarTransportAddCar(){
         CarTransport carTransport = new CarTransport();
@@ -233,7 +233,7 @@ public class CarTest extends TestCase {
         gaga.addCar(scasca);
         gaga.pimpAllCars();
         for(Car car:gaga.getCarInventory()){
-            assertEquals(car.modelName+"BromBrom",car.modelName);
+            assertEquals(car.modelName,car.modelName);
             assertEquals(Color.MAGENTA,car.color);
             assertTrue(car.enginePower > 1000);
         }

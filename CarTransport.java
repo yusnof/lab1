@@ -40,7 +40,7 @@ public class CarTransport extends Truck{
     public int calculateLoad() {
         int load = 0;
         for (Car car : carInventory) {
-            load =+ car.getWeight();
+            load += car.getWeight();
         }
         return load;
     }
