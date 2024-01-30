@@ -15,7 +15,9 @@ public class CarTransport extends Truck{
         stopEngine();
     }
 
-
+    public List<Car> getCarInventory () {
+        return carInventory;
+    }
     public void addCar(Car car){
         if (currentSpeed == 0 && isTruckBedDown && car.getClass() != this.getClass() && measureDistance(car,this)<=3 && isCapacityNotFull(car)) {
             carInventory.add(car);
