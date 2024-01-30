@@ -2,7 +2,6 @@ import java.awt.*;
 
 public class Scania extends Truck {
 
-
     public Scania(){
         capacity=3500;
         weight=3000;

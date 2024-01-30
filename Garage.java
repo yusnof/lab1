@@ -6,14 +6,14 @@ public class Garage<T extends Car>{
 
     private int capacity;
     private final String name;
-    private List<T> carInventory = new ArrayList<>(capacity);
 
-    public Garage(int capacity){
+
+    public Garage(int capacity,T t){
         name = "Pimp my ride";
-        this.capacity = capacity;
+        CarInventory carInventory = new CarInventory(t,capacity);
     }
     public List<T> getCarInventory(){
-        return carInventory;
+        return carInventory.;
     }
 
     public void addCar(T car){
