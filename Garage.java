@@ -2,7 +2,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Garage<T extends Car> {
+public class Garage<T extends Car>{
 
     private int capacity;
     private final String name;

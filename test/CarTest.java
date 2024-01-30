@@ -2,6 +2,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class CarTest extends TestCase {
 
@@ -173,6 +174,7 @@ public class CarTest extends TestCase {
         CarTransport carTransport = new CarTransport();
         assertEquals(0,carTransport.calculateLoad());
     }
+
 
     public void testCarTransportAddCar(){
         CarTransport carTransport= new CarTransport();
