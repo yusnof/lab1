@@ -156,11 +156,10 @@ public class CarTest extends TestCase {
 
     }
     public void testCarTransportRaiseTruckBed(){
-        CarTransport carTransport= new CarTransport();
+        CarTransport carTransport = new CarTransport();
         // not needed bc we declare tha value in the contractor
-        carTransport.isTruckBedDown = true;
         carTransport.raiseTruckBed();
-        assertTrue(carTransport.isTruckBedDown);
+        assertFalse(carTransport.isTruckBedDown);
 
     }
     public void testCarTransportLowerTruckBed(){
@@ -177,12 +176,12 @@ public class CarTest extends TestCase {
 
 
     public void testCarTransportAddCar(){
-        CarTransport carTransport= new CarTransport();
+        CarTransport carTransport = new CarTransport();
         carTransport.addCar(volvo);
         carTransport.addCar(saab);
         carTransport.addCar(volvo);
         carTransport.addCar(volvo);
-        assertEquals(4,carTransport.calculateLoad());
+        assertEquals(4, carTransport.getCarInventory().size());
     }
     public void testCarIsToFarCarTransportAddCar(){
         CarTransport carTransport = new CarTransport();
@@ -240,8 +239,13 @@ public class CarTest extends TestCase {
             assertTrue(car.enginePower > 1000);
         }
     }
-
-
-
-
+    public void testLoadAndUnloadCarTransport(){
+        CarTransport carTransport = new CarTransport();
+        ArrayList<Car> A = new ArrayList<Car>();
+        A.add(saab);
+        carTransport.addCar(volvo);
+        carTransport.addCar(saab);
+        carTransport.removeCar();
+        assertEquals(A,carTransport.getCarInventory());
+    }
 }

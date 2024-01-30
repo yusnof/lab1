@@ -2,8 +2,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarTransport extends Truck{
-    private List<Car> carInventory = new ArrayList<>(10);
+public class CarTransport extends Truck {
+    private CarInventory carInventory = new CarInventory();
     public CarTransport() {
         capacity = 37500;
         weight = 10000;
@@ -29,7 +29,6 @@ public class CarTransport extends Truck{
         if(isTruckBedDown) {
             carInventory.remove(0);
         }
-
     }
 
     public boolean isCapacityNotFull(Car car) {
