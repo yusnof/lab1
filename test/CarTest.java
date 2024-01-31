@@ -143,14 +143,14 @@ public class CarTest extends TestCase {
     }
     public void testScaniaRaiseTruckBed(){
       Scania  scania= new Scania();
-      scania.truckBedAngle=0;
       scania.lowerTruckBed();
-      assertTrue(scania.truckBedAngle==0);
+      assertTrue(scania.getTruckBedAngle()==0);
 
     }
     public void testScaniaLowerTruckBed(){
         Scania scania = new Scania();
-        scania.truckBedAngle = 20;
+        scania.raiseTruckBed();
+        scania.raiseTruckBed();
         scania.lowerTruckBed();
         assertEquals(10, scania.truckBedAngle);
 
@@ -166,7 +166,7 @@ public class CarTest extends TestCase {
         CarTransport carTransport= new CarTransport();
         carTransport.isTruckBedDown=false;
         carTransport.lowerTruckBed();
-        assertTrue(carTransport.isTruckBedDown);
+        assertTrue(carTransport.getTruckBed().isTruckBedDown());
 
     }
     public void testCarTransportCalculateLoad(){
@@ -247,5 +247,12 @@ public class CarTest extends TestCase {
         carTransport.addCar(saab);
         carTransport.removeCar();
         assertEquals(A,carTransport.getCarInventory());
+    }
+    public void testRemoveCarFromInventoryGarage() {
+        Garage<Car> gar = new Garage<>(10);
+        gar.addCar(saab);
+        gar.addCar(volvo);
+        gar.removeCar(volvo);
+        assertEquals(1, gar.getCarInventory().size());
     }
 }

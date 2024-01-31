@@ -16,10 +16,15 @@ public class CarTransport extends Truck {
     }
 
     public List<Car> getCarInventory () {
-        return carInventory;
+        return carInventory.getInventory();
     }
+
+    public TruckBed getTruckBed() {
+        return truckBed;
+    }
+
     public void addCar(Car car){
-        if (currentSpeed == 0 && isTruckBedDown && car.getClass() != this.getClass() && measureDistance(car,this)<=3 && isCapacityNotFull(car)) {
+        if (currentSpeed == 0 && truckBed.isTruckBedDown() && car.getClass() != this.getClass() && measureDistance(car,this)<=3 && isCapacityNotFull(car)) {
             carInventory.add(car);
             car.x = this.getX();
             car.y = this.getY();
@@ -32,7 +37,7 @@ public class CarTransport extends Truck {
     }
 
     public boolean isCapacityNotFull(Car car) {
-        if (calculateLoad() + car.getWeight() <= capacity && carInventory.size() < 10) {
+        if (calculateLoad() + car.getWeight() <= truckBed.getmaxWeight() && carInventory.getInventory().size() < carInventory.getCapacity()) {
             return true;
         }
         else { return false; }
@@ -40,7 +45,7 @@ public class CarTransport extends Truck {
 
     public int calculateLoad() {
         int load = 0;
-        for (Car car : carInventory) {
+        for (Car car : carInventory.getInventory()) {
             load += car.getWeight();
         }
         return load;
@@ -54,5 +59,15 @@ public class CarTransport extends Truck {
                 car.y = this.getY();
             }
         }
+    }
+
+    @Override
+    public void raiseTruckBed() {
+        truckBed.setTruckBed(false);
+    }
+
+    @Override
+    public void lowerTruckBed() {
+        truckBed.setTruckBed(true);
     }
 }

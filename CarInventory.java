@@ -1,10 +1,11 @@
-import java.util.ArrayList;
+import java.util.*;
 
-public class CarInventory implements CanStoreThings<Car> {
-    
-    public CarInventory(int capacity, Car car) {
-        Car t = car.getClass();
-        List<t>  carInventory = new ArrayList<t>(capacity);
+public class CarInventory <T extends Car> {
+    private int capacity;
+    private List<T> inventory = new ArrayList<>(capacity);;
+
+    public CarInventory(int capacity) {
+    this.capacity = capacity;
     }
     public void addThing(){
     }

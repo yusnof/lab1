@@ -14,7 +14,6 @@ public class Scania extends Truck {
     }
     @Override
     public void raiseTruckBed(){
-
         if(truckBedAngle <= 60 && truckBedAngle >= 0 && currentSpeed == 0) {
             truckBedAngle += 10;
             isTruckBedDown = false;
@@ -31,8 +30,13 @@ public class Scania extends Truck {
         }
 
     }
-    public double getTruckBedAngle(){
+    public int getTruckBedAngle(){
         return this.truckBedAngle;
     }
-
+    @Override
+    public void move(){
+        if(truckBed.isTruckBedDown()) {
+            super.move();
+        }
+    }
 }

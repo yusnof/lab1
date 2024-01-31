@@ -4,13 +4,14 @@ import java.util.List;
 
 public class Garage<T extends Car>{
 
-    private int capacity;
+    private final int capacity;
     private final String name;
 
 
-    public Garage(int capacity,T t){
+    public Garage(int capacity){
+        this.capacity = capacity;
         name = "Pimp my ride";
-        CarInventory carInventory = new CarInventory(t,capacity);
+        carInventory = new CarInventory<T>(capacity);
     }
     public List<T> getCarInventory(){
         return carInventory.;
@@ -28,7 +29,7 @@ public class Garage<T extends Car>{
         }
     }
     public void removeCar(T car){
-        if (!carInventory.isEmpty()) {
+        if (!carInventory.getInventory().isEmpty()) {
             this.carInventory.remove(car);
         }
     }
