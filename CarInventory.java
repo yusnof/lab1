@@ -7,9 +7,12 @@ public class CarInventory <T extends Car> {
     public CarInventory(int capacity) {
     this.capacity = capacity;
     }
-    public void addThing(){
+
+    public void add(T car){
+        inventory.add(car);
     }
-    public void removeThing() {
+    public void remove(T car) {
+        inventory.remove(car);
     }
 
 }

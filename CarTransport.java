@@ -31,8 +31,8 @@ public class CarTransport extends Truck {
         }
     }
     public void removeCar() {
-        if(isTruckBedDown) {
-            carInventory.remove(0);
+        if(truckBed.isTruckBedDown()) {
+            carInventory.getInventory().remove(0);
         }
     }
 
@@ -52,9 +52,9 @@ public class CarTransport extends Truck {
     }
     @Override
     public void move() {
-        if(isTruckBedDown) {
+        if(truckBed.isTruckBedDown()) {
             super.move();
-            for (Car car : carInventory) {
+            for (Car car : carInventory.getInventory()) {
                 car.x = this.getX();
                 car.y = this.getY();
             }

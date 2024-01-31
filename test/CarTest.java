@@ -163,8 +163,7 @@ public class CarTest extends TestCase {
 
     }
     public void testCarTransportLowerTruckBed(){
-        CarTransport carTransport= new CarTransport();
-        carTransport.isTruckBedDown=false;
+        CarTransport carTransport = new CarTransport();
         carTransport.lowerTruckBed();
         assertTrue(carTransport.getTruckBed().isTruckBedDown());
 

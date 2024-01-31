@@ -1,15 +1,16 @@
 import java.awt.*;
 
-public class Scania extends Truck {
-
+public class Scania extends Car implements HasTruckBed {
+    private int truckBedAngle;
+    private TruckBed truckBed;
     public Scania(){
-        capacity=3500;
         weight=3000;
         modelName = "Scania";
         nrDoors = 2;
         enginePower=750;
         color = Color.pink;
         truckBedAngle = 0;
+        truckBed = new TruckBed(true,35000) ;
         stopEngine();
     }
     @Override
