@@ -2,16 +2,19 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarTransport extends Truck {
-    private CarInventory carInventory = new CarInventory();
+public class CarTransport extends Car implements HasTruckBed {
+
+    private final CarInventory<Car> carInventory;
+    private final TruckBed truckBed;
+
     public CarTransport() {
-        capacity = 37500;
         weight = 10000;
         modelName = "Lorry";
         nrDoors = 2;
         enginePower = 1000;
         color = Color.YELLOW;
-        isTruckBedDown = true;
+        carInventory = new CarInventory(10);
+        truckBed = new TruckBed(true, 35000);
         stopEngine();
     }
 

@@ -110,14 +110,21 @@ public class CarTest extends TestCase {
         assertEquals(volvo.x, (Math.cos(Math.toRadians(volvo.findAngleA(volvo.direction)))*volvo.getCurrentSpeed()));
 
     }
-
+    public void testScaniaMove () {
+        Scania sca = new Scania();
+        sca.raiseTruckBed();
+        sca.x=0;
+        sca.y=0;
+        sca.move();
+        assertEquals(0.0,sca.x);
+        assertEquals(0.0,sca.y);
+    }
     public void testTurnLeft() {
         volvo.direction= 90;
         volvo.turnLeft();
         assertEquals(105.0,volvo.direction);
 
     }
-
     public void testTurnRight() {
         volvo.direction=90;
         volvo.turnRight();
@@ -152,14 +159,13 @@ public class CarTest extends TestCase {
         scania.raiseTruckBed();
         scania.raiseTruckBed();
         scania.lowerTruckBed();
-        assertEquals(10, scania.truckBedAngle);
-
+        assertEquals(10, scania.getTruckBedAngle());
     }
     public void testCarTransportRaiseTruckBed(){
         CarTransport carTransport = new CarTransport();
         // not needed bc we declare tha value in the contractor
         carTransport.raiseTruckBed();
-        assertFalse(carTransport.isTruckBedDown);
+        assertFalse(carTransport.getTruckBed().isTruckBedDown());
 
     }
     public void testCarTransportLowerTruckBed(){
@@ -172,7 +178,6 @@ public class CarTest extends TestCase {
         CarTransport carTransport = new CarTransport();
         assertEquals(0,carTransport.calculateLoad());
     }
-
 
     public void testCarTransportAddCar(){
         CarTransport carTransport = new CarTransport();

@@ -14,5 +14,9 @@ public class CarInventory <T extends Car> {
     public void remove(T car) {
         inventory.remove(car);
     }
+    public List<T> getInventory() {
+        return inventory;
+    }
+    public int getCapacity() {return capacity;}
 
 }
